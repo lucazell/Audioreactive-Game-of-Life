@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio-Reactive Conway's Game of Life</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/addons/p5.sound.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Audio-Reactive Conway's Game of Life</h1>
+            <p class="subtitle">Watch cellular patterns dance to your music</p>
+        </header>
+
+        <div class="controls-panel">
+            <div class="audio-controls">
+                <div class="upload-section">
+                    <label for="audioFile" class="upload-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Upload Audio
+                    </label>
+                    <input type="file" id="audioFile" accept="audio/*" hidden>
+                </div>
+
+                <div class="playback-controls">
+                    <button id="playPause" class="control-btn" disabled>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5,3 19,12 5,21"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="volume-control">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    </svg>
+                    <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5" class="volume-slider">
+                </div>
+            </div>
+
+            <div class="simulation-controls">
+                <div class="control-group">
+                    <label for="cellSize">Cell Size</label>
+                    <input type="range" id="cellSize" min="2" max="10" value="4" class="slider">
+                    <span id="cellSizeValue">4</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="sensitivity">Audio Sensitivity</label>
+                    <input type="range" id="sensitivity" min="0.1" max="2" step="0.1" value="1" class="slider">
+                    <span id="sensitivityValue">1.0</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="genreSelect">Genre Preset</label>
+                    <select id="genreSelect" class="genre-select">
+                        <option value="adaptive">Adaptive</option>
+                        <option value="electronic">Electronic</option>
+                        <option value="classical">Classical</option>
+                        <option value="rock">Rock</option>
+                        <option value="jazz">Jazz</option>
+                        <option value="ambient">Ambient</option>
+                    </select>
+                </div>
+
+                <div class="visual-toggles">
+                    <div class="toggle-group">
+                        <label class="toggle-label">
+                            <input type="checkbox" id="showGrid" checked>
+                            <span class="toggle-slider"></span>
+                            Show Grid
+                        </label>
+                    </div>
+                    <div class="toggle-group">
+                        <label class="toggle-label">
+                            <input type="checkbox" id="showTrails" checked>
+                            <span class="toggle-slider"></span>
+                            Show Trails
+                        </label>
+                    </div>
+                    <div class="toggle-group">
+                        <label class="toggle-label">
+                            <input type="checkbox" id="colorMode" checked>
+                            <span class="toggle-slider"></span>
+                            Color Mode
+                        </label>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="randomize" class="action-btn">Randomize</button>
+                    <button id="clear" class="action-btn">Clear</button>
+                    <button id="export" class="action-btn">Export</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="visualization-container">
+            <div id="gameOfLife" class="game-canvas"></div>
+            
+            <div class="frequency-display">
+                <div class="freq-bar">
+                    <label>Bass</label>
+                    <div class="bar-container">
+                        <div id="bassBar" class="frequency-bar bass"></div>
+                    </div>
+                </div>
+                <div class="freq-bar">
+                    <label>Mid</label>
+                    <div class="bar-container">
+                        <div id="midBar" class="frequency-bar mid"></div>
+                    </div>
+                </div>
+                <div class="freq-bar">
+                    <label>High</label>
+                    <div class="bar-container">
+                        <div id="highBar" class="frequency-bar high"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-label">Generation:</span>
+                    <span id="generation">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Population:</span>
+                    <span id="population">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Audio Level:</span>
+                    <span id="audioLevel">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="educational-section">
+            <h2 class="educational-title">How Audio Influences the Simulation</h2>
+            <div class="educational-content">
+                <div class="frequency-explanation">
+                    <div class="freq-item">
+                        <div class="freq-color bass-color"></div>
+                        <div class="freq-info">
+                            <h3>Bass Frequencies (Low)</h3>
+                            <p>Control cell birth rates and create random births. Strong bass causes more cells to spontaneously appear, creating explosive growth patterns that mirror the rhythmic foundation of your music.</p>
+                        </div>
+                    </div>
+                    <div class="freq-item">
+                        <div class="freq-color mid-color"></div>
+                        <div class="freq-info">
+                            <h3>Mid Frequencies (Medium)</h3>
+                            <p>Modify survival rules by adjusting the minimum and maximum neighbor requirements. Mid-range frequencies create flowing, organic patterns as they alter the classic Conway's Game of Life rules.</p>
+                        </div>
+                    </div>
+                    <div class="freq-item">
+                        <div class="freq-color high-color"></div>
+                        <div class="freq-info">
+                            <h3>High Frequencies (Treble)</h3>
+                            <p>Generate mutations and random state flips. High frequencies add sparkle and chaos to the simulation, creating unexpected bursts of activity that reflect the brightness in your audio.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="genre-info">
+                    <h3>Genre Presets</h3>
+                    <p>Each genre preset adjusts how the frequencies influence the simulation:</p>
+                    <ul>
+                        <li><strong>Electronic:</strong> Enhanced bass and treble response for sharp, digital patterns</li>
+                        <li><strong>Classical:</strong> Mid-frequency emphasis with gentle mutations for flowing, organic growth</li>
+                        <li><strong>Rock:</strong> Balanced response with increased mutation rates for dynamic patterns</li>
+                        <li><strong>Jazz:</strong> Mid-heavy with moderate complexity for intricate, evolving structures</li>
+                        <li><strong>Ambient:</strong> Treble-focused with slow mutations for ethereal, drifting patterns</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load JavaScript modules -->
+    <script src="js/audioManager.js"></script>
+    <script src="js/gameLogic.js"></script>
+    <script src="js/visualizer.js"></script>
+    <script src="js/uiControls.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
