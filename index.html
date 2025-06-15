@@ -15,6 +15,25 @@
     </header>
     <main id="wrapper">
       <div id="p5-holder"></div>
+      <div class="box controls">
+        <h2>Controls</h2>
+        <button id="buttonRun">Run</button>
+        <button id="buttonStep">Step</button>
+        <button id="buttonClear">Clear</button>
+        <input type="file" id="audioFile" accept="audio/*" />
+        <button id="buttonExport">Export</button>
+      </div>
+      <div class="box">
+        <h2>Stats</h2>
+        <p><span id="generation">0</span> generations | <span id="livecells">0</span> live cells</p>
+
+  </head>
+  <body>
+    <header id="title">
+      <h1>Conway's Game of Life</h1>
+    </header>
+    <main id="wrapper">
+      <div id="p5-holder"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
