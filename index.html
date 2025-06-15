@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="assets/js/json-sans-eval.js"></script>
-    <script src="assets/js/css-browser-selector.js"></script>
-    <script src="assets/js/stats.min.js"></script>
-    <script src="assets/js/game-of-life-v3.1.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
+    <script src="assets/js/sketch.js" defer></script>
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 
-    <title>Conway's Game of Life - Javascript/Canvas Implementation</title>
+    <title>Conway's Game of Life - p5.js Implementation</title>
   </head>
   <body>
     <div id="wrapper">
@@ -18,7 +17,7 @@
         <a href=".">Conway's Game of Life</a>
       </div>
 
-      <canvas id="canvas" width="901" height="433"></canvas>
+      <div id="p5-holder"></div>
 
       <div class="cl">&nbsp;</div>
       <div class="box">
@@ -69,7 +68,7 @@
 
       <div class="box patterns">
         <div class="subtitle">What is this?</div>
-        This page contains a Javascript implementation of the well know John Conway's Game of Life. It uses the <a href="http://dotat.at/prog/life/life.html" title="Tony Finch's List Life Algorithm">List Life</a> algorithm (by Tony Finch) and a Canvas interface for drawing.
+        This page contains a p5.js implementation of the well known John Conway's Game of Life. It uses the p5 library for drawing and audio input.
         <br /><br />
         This is a work in progress and I will add some new features in the near future:
         <ul>
