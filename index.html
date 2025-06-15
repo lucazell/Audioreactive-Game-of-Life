@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audio-reaktives Game of Life mit p5.js</title>
+
+  <!-- p5.js und p5.sound einbinden -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+
+  <!-- Deine existierenden Life-/Draw/Format-Skripte -->
+  <script src="life.js"></script>       <!-- LifeUniverse & Hashlife (vgl. ) -->
+  <script src="draw.js"></script>       <!-- LifeCanvasDrawer (vgl. :contentReference[oaicite:4]{index=4}) -->
+  <script src="formats.js"></script>    <!-- RLE-Parser etc. (vgl. ) -->
+
+  <!-- Dein p5-Sketch -->
+  <script src="sketch.js"></script>
+  
+  <style>
+    /* Optional: Body und Canvas randlos, kein Scrollbar */
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    /* Button zum Upload oben links */
+    #upload-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-family: sans-serif;
+      cursor: pointer;
+    }
+    #upload-btn:hover {
+      background: rgba(255, 255, 255, 1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Button / Label, über den der Nutzer eine Audiodatei auswählt -->
+  <label id="upload-btn" for="audio-file-input">Musik laden</label>
+  <input type="file" id="audio-file-input" accept="audio/*" style="display: none;" />
+</body>
+</html>
