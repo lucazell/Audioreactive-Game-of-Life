@@ -70,3 +70,14 @@ canvas {
   display: block;
 }
 
+input[type="file"] {
+  margin-top: 0.5rem;
+  color: var(--text);
+}
+
+@media (max-width: 700px) {
+  #p5-holder {
+    flex-basis: 100%;
+  }
+}
+
