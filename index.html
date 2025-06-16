@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio-Reactive Conway's Game of Life</title>
+    <title>Audio-reaktives Conway's Game of Life</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/addons/p5.sound.min.js"></script>
@@ -11,8 +11,8 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1 class="title">Audio-Reactive Conway's Game of Life</h1>
-            <p class="subtitle">Watch cellular patterns dance to your music</p>
+            <h1 class="title">Audio-reaktives Conway's Game of Life</h1>
+            <p class="subtitle">Sieh zu, wie Zellmuster zu deiner Musik tanzen</p>
         </header>
 
         <div class="controls-panel">
@@ -24,7 +24,7 @@
                             <polyline points="7,10 12,15 17,10"/>
                             <line x1="12" y1="15" x2="12" y2="3"/>
                         </svg>
-                        Upload Audio
+                        Audio hochladen
                     </label>
                     <input type="file" id="audioFile" accept="audio/*" hidden>
                 </div>
@@ -48,23 +48,23 @@
 
             <div class="simulation-controls">
                 <div class="control-group">
-                    <label for="cellSize">Cell Size</label>
+                    <label for="cellSize">Zellgröße</label>
                     <input type="range" id="cellSize" min="2" max="10" value="4" class="slider">
                     <span id="cellSizeValue">4</span>
                 </div>
 
                 <div class="control-group">
-                    <label for="sensitivity">Audio Sensitivity</label>
+                    <label for="sensitivity">Audio-Empfindlichkeit</label>
                     <input type="range" id="sensitivity" min="0.1" max="2" step="0.1" value="1" class="slider">
                     <span id="sensitivityValue">1.0</span>
                 </div>
 
                 <div class="control-group">
-                    <label for="genreSelect">Genre Preset</label>
+                    <label for="genreSelect">Genre-Voreinstellung</label>
                     <select id="genreSelect" class="genre-select">
-                        <option value="adaptive">Adaptive</option>
-                        <option value="electronic">Electronic</option>
-                        <option value="classical">Classical</option>
+                        <option value="adaptive">Adaptiv</option>
+                        <option value="electronic">Elektronisch</option>
+                        <option value="classical">Klassisch</option>
                         <option value="rock">Rock</option>
                         <option value="jazz">Jazz</option>
                         <option value="ambient">Ambient</option>
@@ -76,29 +76,29 @@
                         <label class="toggle-label">
                             <input type="checkbox" id="showGrid" checked>
                             <span class="toggle-slider"></span>
-                            Show Grid
+                            Gitter anzeigen
                         </label>
                     </div>
                     <div class="toggle-group">
                         <label class="toggle-label">
                             <input type="checkbox" id="showTrails" checked>
                             <span class="toggle-slider"></span>
-                            Show Trails
+                            Spuren anzeigen
                         </label>
                     </div>
                     <div class="toggle-group">
                         <label class="toggle-label">
                             <input type="checkbox" id="colorMode" checked>
                             <span class="toggle-slider"></span>
-                            Color Mode
+                            Farbmodus
                         </label>
                     </div>
                 </div>
 
                 <div class="action-buttons">
-                    <button id="randomize" class="action-btn">Randomize</button>
-                    <button id="clear" class="action-btn">Clear</button>
-                    <button id="export" class="action-btn">Export</button>
+                    <button id="randomize" class="action-btn">Zufall</button>
+                    <button id="clear" class="action-btn">Leeren</button>
+                    <button id="export" class="action-btn">Exportieren</button>
                 </div>
             </div>
         </div>
@@ -114,13 +114,13 @@
                     </div>
                 </div>
                 <div class="freq-bar">
-                    <label>Mid</label>
+                    <label>Mitten</label>
                     <div class="bar-container">
                         <div id="midBar" class="frequency-bar mid"></div>
                     </div>
                 </div>
                 <div class="freq-bar">
-                    <label>High</label>
+                    <label>Höhen</label>
                     <div class="bar-container">
                         <div id="highBar" class="frequency-bar high"></div>
                     </div>
@@ -139,54 +139,54 @@
                     <span id="population">0</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-label">Audio Level:</span>
+                    <span class="stat-label">Audiopegel:</span>
                     <span id="audioLevel">0</span>
                 </div>
             </div>
         </div>
 
         <div class="educational-section">
-            <h2 class="educational-title">How Audio Influences the Simulation</h2>
+            <h2 class="educational-title">Wie Audio die Simulation beeinflusst</h2>
             <div class="educational-content">
                 <div class="frequency-explanation">
                     <div class="freq-item">
                         <div class="freq-color bass-color"></div>
                         <div class="freq-info">
-                            <h3>Bass Frequencies (Low)</h3>
-                            <p>Control cell birth rates and create random births. Strong bass causes more cells to spontaneously appear, creating explosive growth patterns that mirror the rhythmic foundation of your music.</p>
+                            <h3>Bassfrequenzen (Tief)</h3>
+                            <p>Steuern die Zellgeburtsrate und erzeugen zufällige Geburten. Kräftiger Bass lässt mehr Zellen spontan erscheinen und erzeugt explosive Wachstumsmuster, die das rhythmische Fundament deiner Musik widerspiegeln.</p>
                         </div>
                     </div>
                     <div class="freq-item">
                         <div class="freq-color mid-color"></div>
                         <div class="freq-info">
-                            <h3>Mid Frequencies (Medium)</h3>
-                            <p>Modify survival rules by adjusting the minimum and maximum neighbor requirements. Mid-range frequencies create flowing, organic patterns as they alter the classic Conway's Game of Life rules.</p>
+                            <h3>Mittlere Frequenzen (Mittel)</h3>
+                            <p>Ändern die Überlebensregeln, indem sie die Mindest- und Höchstzahl an Nachbarn anpassen. Mittlere Frequenzen schaffen fließende, organische Muster, da sie die klassischen Regeln von Conway's Game of Life verändern.</p>
                         </div>
                     </div>
                     <div class="freq-item">
                         <div class="freq-color high-color"></div>
                         <div class="freq-info">
-                            <h3>High Frequencies (Treble)</h3>
-                            <p>Generate mutations and random state flips. High frequencies add sparkle and chaos to the simulation, creating unexpected bursts of activity that reflect the brightness in your audio.</p>
+                            <h3>Hohe Frequenzen (Höhen)</h3>
+                            <p>Erzeugen Mutationen und zufällige Zustandswechsel. Hohe Frequenzen fügen der Simulation Glanz und Chaos hinzu und sorgen für unerwartete Aktivitätsausbrüche, die die Brillanz deines Audios widerspiegeln.</p>
                         </div>
                     </div>
                 </div>
                 <div class="genre-info">
-                    <h3>Genre Presets</h3>
-                    <p>Each genre preset adjusts how the frequencies influence the simulation:</p>
+                    <h3>Genre-Voreinstellungen</h3>
+                    <p>Jede Genre-Voreinstellung passt an, wie die Frequenzen die Simulation beeinflussen:</p>
                     <ul>
-                        <li><strong>Electronic:</strong> Enhanced bass and treble response for sharp, digital patterns</li>
-                        <li><strong>Classical:</strong> Mid-frequency emphasis with gentle mutations for flowing, organic growth</li>
-                        <li><strong>Rock:</strong> Balanced response with increased mutation rates for dynamic patterns</li>
-                        <li><strong>Jazz:</strong> Mid-heavy with moderate complexity for intricate, evolving structures</li>
-                        <li><strong>Ambient:</strong> Treble-focused with slow mutations for ethereal, drifting patterns</li>
+                        <li><strong>Elektronisch:</strong> Verstärkte Bass- und Höhenreaktion für scharfe, digitale Muster</li>
+                        <li><strong>Klassisch:</strong> Betonung der mittleren Frequenzen mit sanften Mutationen für fließendes, organisches Wachstum</li>
+                        <li><strong>Rock:</strong> Ausgewogene Reaktion mit erhöhter Mutationsrate für dynamische Muster</li>
+                        <li><strong>Jazz:</strong> Mittenbetont mit moderater Komplexität für komplizierte, sich entwickelnde Strukturen</li>
+                        <li><strong>Ambient:</strong> Höhenfokussiert mit langsamen Mutationen für ätherische, schwebende Muster</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Load JavaScript modules -->
+    <!-- JavaScript-Module laden -->
     <script src="js/audioManager.js"></script>
     <script src="js/gameLogic.js"></script>
     <script src="js/visualizer.js"></script>
