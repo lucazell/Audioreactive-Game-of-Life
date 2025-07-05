@@ -164,6 +164,13 @@ class GameLogic {
             this.grid[x][y] = 1 - this.grid[x][y];
         }
     }
+
+    // Set the state of a cell directly (used for drawing/erasing)
+    setCellState(x, y, state) {
+        if (x >= 0 && x < this.cols && y >= 0 && y < this.rows) {
+            this.grid[x][y] = state;
+        }
+    }
     
     setGenre(genre) {
         this.currentGenre = genre;

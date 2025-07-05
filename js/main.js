@@ -90,6 +90,10 @@ function mousePressed() {
     uiControls.handleMouseClick(mouseX, mouseY);
 }
 
+function mouseDragged() {
+    uiControls.handleMouseDrag(mouseX, mouseY);
+}
+
 function keyPressed() {
     uiControls.handleKeyPress(key);
 }
