@@ -116,6 +116,15 @@ class UIControls {
             this.gameLogic.toggleCell(col, row);
         }
     }
+
+    // Continuously draw cells while the mouse is dragged
+    handleMouseDrag(mouseX, mouseY) {
+        if (mouseX >= 0 && mouseX < width && mouseY >= 0 && mouseY < height) {
+            let col = floor(mouseX / this.visualizer.cellSize);
+            let row = floor(mouseY / this.visualizer.cellSize);
+            this.gameLogic.setCellState(col, row, 1);
+        }
+    }
     
     handleKeyPress(key) {
         if (key === ' ') {
