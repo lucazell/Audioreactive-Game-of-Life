@@ -5,18 +5,25 @@ class UIControls {
         this.gameLogic = gameLogic;
         this.visualizer = visualizer;
         
+        // Hinweis-Element referenzieren
+        this.uploadHint = document.getElementById('uploadHint');
+
         this.setupEventListeners();
     }
     
     setupEventListeners() {
         // Audio file input
-        document.getElementById('audioFile').addEventListener('change', (e) => {
+        const fileInput = document.getElementById('audioFile');
+        fileInput.addEventListener('change', (e) => {
             this.handleAudioFile(e);
+            this.hideUploadHint();                    // Hinweis ausblenden, wenn Datei gewählt
         });
         
         // Playback controls
-        document.getElementById('playPause').addEventListener('click', () => {
+        const playBtn = document.getElementById('playPause');
+        playBtn.addEventListener('click', () => {
             this.togglePlayback();
+            this.hideUploadHint();                    // Hinweis ausblenden, wenn Play gedrückt
         });
         
         // Volume control
@@ -147,6 +154,13 @@ class UIControls {
             const colorToggle = document.getElementById('colorMode');
             colorToggle.checked = !colorToggle.checked;
             this.visualizer.setColorMode(colorToggle.checked);
+        }
+    }
+
+    // Methode, um Hinweis auszublenden
+    hideUploadHint() {
+        if (this.uploadHint) {
+            this.uploadHint.classList.add('hidden');
         }
     }
 }

@@ -16,6 +16,7 @@
                 <a href="https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens" target="_blank" rel="noopener noreferrer">Conway’s Game of Life</a>
             </p>
         </header>
+        
 
         <div class="controls-panel">
             <div class="audio-controls">
@@ -28,6 +29,13 @@
                         </svg>
                         Audio hochladen
                     </label>
+
+                    <!-- HINWEIS-TOOLTIP -->
+                    <div id="uploadHint" class="upload-hint">
+                        Lade Musik hoch<br>und drücke ▶︎
+                        <span class="upload-hint__arrow"></span>
+                    </div>
+
                     <input type="file" id="audioFile" accept="audio/*" hidden>
                 </div>
 
