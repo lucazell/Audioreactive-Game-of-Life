@@ -5,8 +5,8 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+    font-family: 'Satoshi', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0A0A0B;
     color: #ffffff;
     min-height: 100vh;
     overflow-x: hidden;
@@ -21,17 +21,24 @@ body {
 .header {
     text-align: center;
     margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #a1a1aa;
 }
 
 .title {
     font-size: 2.5rem;
     font-weight: 700;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     margin-bottom: 10px;
-    animation: gradient-shift 3s ease-in-out infinite;
+    color: #ffffff;
 }
 
 @keyframes gradient-shift {
@@ -40,13 +47,13 @@ body {
 }
 
 .subtitle {
-    font-size: 1.2rem;
-    color: #b8b8d4;
+    font-size: 1.1rem;
+    color: #a1a1aa;
     font-weight: 300;
 }
 
 .controls-panel {
-    background: rgba(255, 255, 255, 0.1);
+    background: #18181B;
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 25px;
@@ -67,8 +74,8 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-    color: white;
+    background-color: #FFFFFF;
+    color: #0A0A0B;
     padding: 12px 20px;
     border-radius: 12px;
     cursor: pointer;
@@ -79,7 +86,7 @@ body {
 
 .upload-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 5px 15px rgba(145, 145, 145, 0.4);
 }
 
 .playback-controls {
@@ -115,7 +122,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255, 255, 255, 0.1);
+    background: #18181B;
     padding: 8px 15px;
     border-radius: 12px;
 }
@@ -139,7 +146,7 @@ body {
 
 .control-group label {
     font-size: 0.9rem;
-    color: #b8b8d4;
+    color: #a1a1aa;
     font-weight: 500;
 }
 
@@ -157,7 +164,7 @@ body {
     appearance: none;
     width: 18px;
     height: 18px;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    background-color: white;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -168,7 +175,7 @@ body {
 }
 
 .genre-select {
-    background: rgba(255, 255, 255, 0.1);
+    background: #18181B;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     padding: 10px;
@@ -177,7 +184,7 @@ body {
 }
 
 .genre-select option {
-    background: #2d2d44;
+    background: #18181B;
     color: white;
 }
 
@@ -188,7 +195,7 @@ body {
 }
 
 .action-btn {
-    background: rgba(255, 255, 255, 0.1);
+    background: #18181B;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     padding: 10px 15px;
@@ -211,11 +218,11 @@ body {
 }
 
 .game-canvas {
-    background: rgba(0, 0, 0, 0.3);
+    background: #18181B;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid #18181B;
     width: 100%;
     min-height: 400px;
     position: relative;
@@ -230,7 +237,7 @@ body {
 }
 
 .frequency-display {
-    background: rgba(255, 255, 255, 0.1);
+    background: #18181B;
     backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 20px;
@@ -249,7 +256,7 @@ body {
 
 .freq-bar label {
     font-size: 0.8rem;
-    color: #b8b8d4;
+    color: #a1a1aa;
     font-weight: 600;
     text-align: center;
 }
@@ -257,7 +264,7 @@ body {
 .bar-container {
     width: 80px;
     height: 100px;
-    background: rgba(255, 255, 255, 0.1);
+    background: #18181B;
     border-radius: 8px;
     overflow: hidden;
     display: flex;
@@ -284,7 +291,7 @@ body {
 }
 
 .info-panel {
-    background: rgba(255, 255, 255, 0.1);
+    background: #18181B;
     backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 20px;
@@ -307,14 +314,14 @@ body {
 
 .stat-label {
     font-size: 0.9rem;
-    color: #b8b8d4;
+    color: #a1a1aa;
     font-weight: 500;
 }
 
 .stat span:last-child {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #4ecdc4;
+    color: #FFFFFF;
 }
 
 .visual-toggles {
@@ -334,7 +341,7 @@ body {
     gap: 10px;
     cursor: pointer;
     font-size: 0.9rem;
-    color: #b8b8d4;
+    color: #a1a1aa;
     font-weight: 500;
 }
 
@@ -349,7 +356,7 @@ body {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid #18181B;
 }
 
 .toggle-slider::before {
@@ -359,14 +366,14 @@ body {
     left: 2px;
     width: 16px;
     height: 16px;
-    background: white;
+    background: #0A0A0B;
     border-radius: 50%;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .toggle-label input[type="checkbox"]:checked + .toggle-slider {
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    background-color: #FFFFFF;
 }
 
 .toggle-label input[type="checkbox"]:checked + .toggle-slider::before {
@@ -378,7 +385,7 @@ body {
 }
 
 .educational-section {
-    background: rgba(255, 255, 255, 0.1);
+    background: #18181B;
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 30px;
@@ -392,7 +399,7 @@ body {
     font-weight: 700;
     text-align: center;
     margin-bottom: 25px;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    background: #ffffff;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -416,7 +423,7 @@ body {
     padding: 20px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid #18181B;
 }
 
 .freq-color {
@@ -446,7 +453,7 @@ body {
 }
 
 .freq-info p {
-    color: #b8b8d4;
+    color: #a1a1aa;
     line-height: 1.6;
     font-size: 0.95rem;
 }
@@ -455,7 +462,7 @@ body {
     padding: 20px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid #18181B;
 }
 
 .genre-info h3 {
@@ -466,7 +473,7 @@ body {
 }
 
 .genre-info p {
-    color: #b8b8d4;
+    color: #a1a1aa;
     line-height: 1.6;
     margin-bottom: 15px;
 }
@@ -477,7 +484,7 @@ body {
 }
 
 .genre-info li {
-    color: #b8b8d4;
+    color: #a1a1aa;
     line-height: 1.6;
     margin-bottom: 8px;
     padding-left: 15px;

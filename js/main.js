@@ -41,11 +41,11 @@ function draw() {
     
     // Handle trail effect more efficiently
     if (visualizer.showTrails) {
-        fill(15, 15, 30, 40); // Slightly more opaque for better trails
+        fill('#18181B10'); // Slightly more opaque for better trails
         noStroke();
         rect(0, 0, width, height);
     } else {
-        background(15, 15, 30); // Solid background
+        background('#18181B'); // Solid background
     }
     
     // Analyze audio only when playing
