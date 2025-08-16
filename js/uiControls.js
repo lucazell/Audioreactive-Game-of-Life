@@ -92,6 +92,7 @@ class UIControls {
             this.exportCanvas();
         });
 
+        // Fullscreen toggle button
         const fullscreenBtn = document.getElementById('fullscreenToggle');
         if (fullscreenBtn) {
             fullscreenBtn.addEventListener('click', () => {
@@ -100,6 +101,7 @@ class UIControls {
             fullscreenBtn.innerHTML = this.fullscreenIcon;
         }
 
+        // Update icon and canvas sizing when fullscreen state changes
         document.addEventListener('fullscreenchange', () => {
             const btn = document.getElementById('fullscreenToggle');
             if (btn) {
