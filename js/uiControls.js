@@ -75,6 +75,10 @@ class UIControls {
         document.getElementById('export').addEventListener('click', () => {
             this.exportCanvas();
         });
+
+        document.getElementById('fullscreenToggle').addEventListener('click', () => {
+            this.toggleFullscreen();
+        });
     }
     
     handleAudioFile(event) {
@@ -107,6 +111,33 @@ class UIControls {
     
     exportCanvas() {
         saveCanvas('audio-reactive-game-of-life', 'png');
+    }
+
+    toggleFullscreen() {
+        const container = document.getElementById('gameOfLife');
+        if (!document.fullscreenElement) {
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
+            resizeCanvas(window.innerWidth, window.innerHeight);
+            const cols = floor(width / this.visualizer.cellSize);
+            const rows = floor(height / this.visualizer.cellSize);
+            this.gameLogic.resizeGrid(cols, rows);
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+            windowResized();
+        }
+        container.classList.toggle('fullscreen');
+        const btn = document.getElementById('fullscreenToggle');
+        if (btn) {
+            btn.textContent = document.fullscreenElement ? 'Exit Fullscreen' : 'Fullscreen';
+        }
     }
     
     updateStats() {
@@ -154,6 +185,8 @@ class UIControls {
             const colorToggle = document.getElementById('colorMode');
             colorToggle.checked = !colorToggle.checked;
             this.visualizer.setColorMode(colorToggle.checked);
+        } else if (key === 'f' || key === 'F') {
+            this.toggleFullscreen();
         }
     }
 

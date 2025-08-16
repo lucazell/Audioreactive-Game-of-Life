@@ -236,6 +236,19 @@ a:hover{
     display: block;
 }
 
+/* Fullscreen adjustments */
+.game-canvas.fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: none;
+    border-radius: 0;
+}
+
+.game-canvas.fullscreen canvas {
+    height: 100% !important;
+    max-height: none;
+}
+
 .frequency-display {
     background: #18181B;
     backdrop-filter: blur(10px);
