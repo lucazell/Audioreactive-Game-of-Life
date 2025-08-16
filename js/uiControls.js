@@ -4,9 +4,25 @@ class UIControls {
         this.audioManager = audioManager;
         this.gameLogic = gameLogic;
         this.visualizer = visualizer;
-        
+
         // Hinweis-Element referenzieren
         this.uploadHint = document.getElementById('uploadHint');
+
+        // Icons for fullscreen toggle
+        this.fullscreenIcon = `
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <polyline points="9 21 3 21 3 15"></polyline>
+                <line x1="21" y1="3" x2="14" y2="10"></line>
+                <line x1="3" y1="21" x2="10" y2="14"></line>
+            </svg>`;
+        this.exitFullscreenIcon = `
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 3 3 3 3 9"></polyline>
+                <polyline points="15 21 21 21 21 15"></polyline>
+                <line x1="3" y1="3" x2="10" y2="10"></line>
+                <line x1="21" y1="21" x2="14" y2="14"></line>
+            </svg>`;
 
         this.setupEventListeners();
     }
@@ -75,6 +91,29 @@ class UIControls {
         document.getElementById('export').addEventListener('click', () => {
             this.exportCanvas();
         });
+
+        // Fullscreen toggle button
+        const fullscreenBtn = document.getElementById('fullscreenToggle');
+        if (fullscreenBtn) {
+            fullscreenBtn.addEventListener('click', () => {
+                this.toggleFullscreen();
+            });
+            fullscreenBtn.innerHTML = this.fullscreenIcon;
+        }
+
+        // Update icon, container class and canvas sizing when fullscreen state changes
+        document.addEventListener('fullscreenchange', () => {
+            const btn = document.getElementById('fullscreenToggle');
+            const container = document.getElementById('gameOfLife');
+            const isFullscreen = document.fullscreenElement === container;
+            if (btn) {
+                btn.innerHTML = isFullscreen ? this.exitFullscreenIcon : this.fullscreenIcon;
+            }
+            if (container) {
+                container.classList.toggle('fullscreen', isFullscreen);
+            }
+            windowResized();
+        });
     }
     
     handleAudioFile(event) {
@@ -107,6 +146,23 @@ class UIControls {
     
     exportCanvas() {
         saveCanvas('audio-reactive-game-of-life', 'png');
+    }
+
+    toggleFullscreen() {
+        const container = document.getElementById('gameOfLife');
+        if (!document.fullscreenElement) {
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+        }
     }
     
     updateStats() {

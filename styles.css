@@ -236,6 +236,46 @@ a:hover{
     display: block;
 }
 
+/* Fullscreen toggle button */
+.fullscreen-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    z-index: 10;
+}
+
+.fullscreen-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Allow clicks through SVG icon */
+.fullscreen-btn svg {
+    pointer-events: none;
+}
+
+/* Fullscreen adjustments */
+.game-canvas.fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: none;
+    border-radius: 0;
+}
+
+.game-canvas.fullscreen canvas {
+    height: 100% !important;
+    max-height: none;
+}
+
 .frequency-display {
     background: #18181B;
     backdrop-filter: blur(10px);
