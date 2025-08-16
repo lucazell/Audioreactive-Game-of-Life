@@ -8,22 +8,6 @@ class UIControls {
         // Hinweis-Element referenzieren
         this.uploadHint = document.getElementById('uploadHint');
 
-        // Icons for fullscreen toggle
-        this.fullscreenIcon = `
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <polyline points="9 21 3 21 3 15"></polyline>
-                <line x1="21" y1="3" x2="14" y2="10"></line>
-                <line x1="3" y1="21" x2="10" y2="14"></line>
-            </svg>`;
-        this.exitFullscreenIcon = `
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 3 3 3 3 9"></polyline>
-                <polyline points="15 21 21 21 21 15"></polyline>
-                <line x1="3" y1="3" x2="10" y2="10"></line>
-                <line x1="21" y1="21" x2="14" y2="14"></line>
-            </svg>`;
-
         this.setupEventListeners();
     }
     
@@ -92,27 +76,6 @@ class UIControls {
             this.exportCanvas();
         });
 
-        // Fullscreen toggle button
-        const fullscreenBtn = document.getElementById('fullscreenToggle');
-        if (fullscreenBtn) {
-            fullscreenBtn.addEventListener('click', () => {
-                this.toggleFullscreen();
-            });
-            fullscreenBtn.innerHTML = this.fullscreenIcon;
-        }
-
-        // Update icon and canvas sizing when fullscreen state changes
-        document.addEventListener('fullscreenchange', () => {
-            const btn = document.getElementById('fullscreenToggle');
-            if (btn) {
-                btn.innerHTML = document.fullscreenElement ? this.exitFullscreenIcon : this.fullscreenIcon;
-            }
-            windowResized();
-
-        document.getElementById('fullscreenToggle').addEventListener('click', () => {
-            this.toggleFullscreen();
-
-        });
     }
     
     handleAudioFile(event) {
@@ -147,38 +110,10 @@ class UIControls {
         saveCanvas('audio-reactive-game-of-life', 'png');
     }
 
-    toggleFullscreen() {
-        const container = document.getElementById('gameOfLife');
-        if (!document.fullscreenElement) {
-            if (container.requestFullscreen) {
-                container.requestFullscreen();
-            } else if (container.webkitRequestFullscreen) {
-                container.webkitRequestFullscreen();
-            }
-            resizeCanvas(window.innerWidth, window.innerHeight);
-            const cols = floor(width / this.visualizer.cellSize);
-            const rows = floor(height / this.visualizer.cellSize);
-            this.gameLogic.resizeGrid(cols, rows);
-        } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            }
-            windowResized();
-        }
-        container.classList.toggle('fullscreen');
-
-        const btn = document.getElementById('fullscreenToggle');
-        if (btn) {
-            btn.textContent = document.fullscreenElement ? 'Exit Fullscreen' : 'Fullscreen';
-        }
-    }
-    
     updateStats() {
         document.getElementById('generation').textContent = this.gameLogic.generation;
         document.getElementById('population').textContent = this.gameLogic.population;
-        document.getElementById('audioLevel').textContent = 
+        document.getElementById('audioLevel').textContent =
             (this.audioManager.getAudioLevel() * 100).toFixed(1) + '%';
     }
     
@@ -220,8 +155,6 @@ class UIControls {
             const colorToggle = document.getElementById('colorMode');
             colorToggle.checked = !colorToggle.checked;
             this.visualizer.setColorMode(colorToggle.checked);
-        } else if (key === 'f' || key === 'F') {
-            this.toggleFullscreen();
         }
     }
 
