@@ -75,11 +75,6 @@ function windowResized() {
     let targetWidth = container.offsetWidth;
     let targetHeight = Math.min(600, window.innerHeight * 0.6);
 
-    if (document.fullscreenElement === container) {
-        targetWidth = window.innerWidth;
-        targetHeight = window.innerHeight;
-    }
-
     resizeCanvas(targetWidth, targetHeight);
 
     // Update grid dimensions when canvas resizes
