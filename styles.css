@@ -232,7 +232,6 @@ a:hover{
 .game-canvas canvas {
     width: 100% !important;
     height: auto !important;
-    max-height: 600px;
     display: block;
 }
 

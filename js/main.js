@@ -71,11 +71,12 @@ function draw() {
 function windowResized() {
     const container = document.getElementById('gameOfLife');
     if (container) {
-        const containerWidth = container.offsetWidth;
-        const containerHeight = Math.min(600, window.innerHeight * 0.6);
-        
+        const isFullscreen = document.fullscreenElement === container;
+        const containerWidth = isFullscreen ? window.innerWidth : container.offsetWidth;
+        const containerHeight = isFullscreen ? window.innerHeight : Math.min(600, window.innerHeight * 0.6);
+
         resizeCanvas(containerWidth, containerHeight);
-        
+
         // Update grid dimensions when canvas resizes
         if (visualizer) {
             const cols = floor(width / visualizer.cellSize);
