@@ -178,14 +178,18 @@ class GameLogic {
     
     resizeGrid(newCols, newRows) {
         let newGrid = this.make2DArray(newCols, newRows);
-        
-        // Copy existing cells to new grid (scaled)
-        for (let i = 0; i < min(newCols, this.cols); i++) {
-            for (let j = 0; j < min(newRows, this.rows); j++) {
-                newGrid[i][j] = this.grid[i][j];
+
+        // Copy existing cells and randomize new ones
+        for (let i = 0; i < newCols; i++) {
+            for (let j = 0; j < newRows; j++) {
+                if (i < this.cols && j < this.rows) {
+                    newGrid[i][j] = this.grid[i][j];
+                } else {
+                    newGrid[i][j] = random() > 0.8 ? 1 : 0;
+                }
             }
         }
-        
+
         this.cols = newCols;
         this.rows = newRows;
         this.grid = newGrid;
