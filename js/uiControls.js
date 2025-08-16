@@ -4,7 +4,7 @@ class UIControls {
         this.audioManager = audioManager;
         this.gameLogic = gameLogic;
         this.visualizer = visualizer;
-
+        
         // Hinweis-Element referenzieren
         this.uploadHint = document.getElementById('uploadHint');
 
@@ -75,7 +75,6 @@ class UIControls {
         document.getElementById('export').addEventListener('click', () => {
             this.exportCanvas();
         });
-
     }
     
     handleAudioFile(event) {
@@ -109,11 +108,11 @@ class UIControls {
     exportCanvas() {
         saveCanvas('audio-reactive-game-of-life', 'png');
     }
-
+    
     updateStats() {
         document.getElementById('generation').textContent = this.gameLogic.generation;
         document.getElementById('population').textContent = this.gameLogic.population;
-        document.getElementById('audioLevel').textContent =
+        document.getElementById('audioLevel').textContent = 
             (this.audioManager.getAudioLevel() * 100).toFixed(1) + '%';
     }
     
