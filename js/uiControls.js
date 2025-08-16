@@ -75,6 +75,12 @@ class UIControls {
         document.getElementById('export').addEventListener('click', () => {
             this.exportCanvas();
         });
+
+        // Fullscreen toggle
+        const fsBtn = document.getElementById('fullscreenBtn');
+        fsBtn.addEventListener('click', () => {
+            this.toggleFullscreen();
+        });
     }
     
     handleAudioFile(event) {
@@ -107,6 +113,29 @@ class UIControls {
     
     exportCanvas() {
         saveCanvas('audio-reactive-game-of-life', 'png');
+    }
+
+    toggleFullscreen() {
+        const container = document.getElementById('gameOfLife');
+
+        if (!document.fullscreenElement) {
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+        }
+
+        // Resize canvas after the fullscreen change
+        setTimeout(() => {
+            windowResized();
+        }, 100);
     }
     
     updateStats() {
