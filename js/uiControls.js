@@ -108,6 +108,10 @@ class UIControls {
                 btn.innerHTML = document.fullscreenElement ? this.exitFullscreenIcon : this.fullscreenIcon;
             }
             windowResized();
+
+        document.getElementById('fullscreenToggle').addEventListener('click', () => {
+            this.toggleFullscreen();
+
         });
     }
     
@@ -164,6 +168,11 @@ class UIControls {
             windowResized();
         }
         container.classList.toggle('fullscreen');
+
+        const btn = document.getElementById('fullscreenToggle');
+        if (btn) {
+            btn.textContent = document.fullscreenElement ? 'Exit Fullscreen' : 'Fullscreen';
+        }
     }
     
     updateStats() {
