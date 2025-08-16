@@ -75,6 +75,12 @@ class UIControls {
         document.getElementById('export').addEventListener('click', () => {
             this.exportCanvas();
         });
+
+        // Fullscreen toggle
+        const fsBtn = document.getElementById('fullscreenBtn');
+        fsBtn.addEventListener('click', () => {
+            this.toggleFullscreen();
+        });
     }
     
     handleAudioFile(event) {
@@ -107,6 +113,11 @@ class UIControls {
     
     exportCanvas() {
         saveCanvas('audio-reactive-game-of-life', 'png');
+    }
+
+    toggleFullscreen() {
+        const fs = fullscreen();
+        fullscreen(!fs);
     }
     
     updateStats() {
